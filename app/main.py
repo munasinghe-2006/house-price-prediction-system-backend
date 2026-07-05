@@ -35,3 +35,13 @@ def read_root():
 def read_health():
     return {"status": "ok"}
 
+
+@app.get("/model-info")
+def read_model_info():
+    return {
+        "model_type": type(model).__name__,
+        "no_of_feature_columns": len(feature_columns),
+        "sample_feature_columns": feature_columns[:10]
+    }
+
+
