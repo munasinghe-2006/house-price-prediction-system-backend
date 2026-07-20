@@ -73,13 +73,13 @@ def create_input_row(data: HousePricePredictionInput):
         input_row[feature_index] = value
 
     if data.area_type not in AREA_TYPE_FEATURES:
-        return HTTPException(status_code=400, detail=f"Invalid area_type. Must be one of: {AREA_TYPE_FEATURES}")
+        raise HTTPException(status_code=400, detail=f"Invalid area_type. Must be one of: {AREA_TYPE_FEATURES}")
     
     area_type_index = feature_columns.index(data.area_type)
     input_row[area_type_index] = 1
 
     if data.location not in LOCATION_TYPE_FEATURES:
-        return HTTPException(status_code=400, detail=f"Invalid location. Must be one of: {LOCATION_TYPE_FEATURES}")
+        raise HTTPException(status_code=400, detail=f"Invalid location. Must be one of: {LOCATION_TYPE_FEATURES}")
     
     location_index = feature_columns.index(data.location)
     input_row[location_index] = 1
